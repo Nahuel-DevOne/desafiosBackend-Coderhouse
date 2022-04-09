@@ -2,6 +2,10 @@ const fs = require("fs");
 const Container = require("./Container");
 const fileName = "products.json";
 
+const express = require('express');
+const path = require('path');
+const app = express();
+
 try {
   if (!fs.existsSync(fileName)) {
     fs.open(fileName, "w", function (err, file) {
@@ -14,10 +18,34 @@ try {
   console.log(error);
 }
 
+/** Ruta que devuelve un array con todos los productos */
+app.get("/productos", (req, res) => {
+  fs.readFile(fileName, "utf8", function (err, data) {
+    if (err) throw err;
+    const json = JSON.parse(data);
+    res.send(json);
+  });
+});
+
+/** Ruta que devuelve un producto elegido al azar */
+app.get("/productoRandom", (req, res) => { 
+  fs.readFile(fileName, "utf8", function (err, data) {
+    if (err) throw err;
+    const json = JSON.parse(data);
+    const random = Math.floor(Math.random() * json.length);
+    res.send(json[random]);
+  });
+})
+
+/** Corriendo en el servidor 8080 */
+app.listen(8080, ()=>{ 
+  console.log("server run on port 8080");
+});
+
 const file = new Container(fileName);
 
 /** muestra el arreglo de objetos con todos los productos. Si no hay nada, trae un arreglo vacío */
-file.getAll();
+// file.getAll();
 
 /** para guardar un objeto en el arreglo de objetos products.json */
 // file.save({
