@@ -1,11 +1,34 @@
 // const fs = require("fs");
-const Container = require("./Container");
-const fileName = "products.json";
+// const Container = require("./Container");
+// const fileName = "products.json";
+// const path = require('path');
 const express = require('express');
-const path = require('path');
 const app = express();
 const routes = require("./api/routes");
 const PORT = 8080;
+
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/views/index.html");
+});
+
+/***** ya no es necesario utilizar body parser, ya que express lo incluye por defecto en la instalación *****/
+// const bodyParser = require("body-parser"); /** ya no es necesario */
+/***** y estas dos líneas pueden ser reemplazadas *****/
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+/** Por estas dos: */
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+
+/** Utilizando las rutas modularizadas */
+app.use("/api", routes);
+
+/** Corriendo en el servidor 8080 */
+app.listen(PORT, ()=>{ 
+  console.log("server run on port 8080");
+});
+
 
 // try {
 //   if (!fs.existsSync(fileName)) {
@@ -18,24 +41,6 @@ const PORT = 8080;
 // } catch (error) {
 //   console.log(error);
 // }
-
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
-});
-
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-
-//ya no es necesario utilizar body parser, ya que express lo incluye por defecto en la instalación
-// app.use(express.urlencoded()); deprecado
-app.use(express.json());
-
-app.use("/api", routes);
-
-/** Corriendo en el servidor 8080 */
-app.listen(PORT, ()=>{ 
-  console.log("server run on port 8080");
-});
 
 // const file = new Container(fileName);
 

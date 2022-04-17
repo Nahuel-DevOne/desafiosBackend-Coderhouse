@@ -11,8 +11,10 @@
   <body>
     <h1 class="display-2 text-dark text-center bg-light p-3 mb-5">Desafío 4</h1>
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-7 col-md-8 col-12">
+      <div class="row justify-content-start">
+        <div class="col-lg-8 col-md-9 col-12">
+          <h2 class="display-5 fs-3 bg-dark bg-gradient text-white text-center rounded p-3 mb-5">Agrega productos completando los tres campos</h2>
+          <!-- form para agregar productos -->
           <form action="/api/products" method="post" class="row g-3 bg-light p-3 rounded">
             <div class="col-12 col-md-8">
               <label for="title" class="form-label lead fs-2">Title</label>
@@ -27,7 +29,7 @@
               <input type="text" name="thumbnail" id="thumbnail" placeholder="Thumbnail" class="form-control" maxlength="150" required/>
             </div>
             <div class="justify-content-center">
-              <button type="submit" class="btn btn-lg btn-dark bg-gradient text-center col-12 col-md-6 col-lg-3">Save</button>
+              <button type="submit" class="btn btn-lg btn-dark bg-gradient col-12 col-md-6 col-lg-3">Save</button>
             </div>
           </form>
         </div>
