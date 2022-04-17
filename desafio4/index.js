@@ -1,48 +1,43 @@
-const fs = require("fs");
+// const fs = require("fs");
 const Container = require("./Container");
 const fileName = "products.json";
-
 const express = require('express');
 const path = require('path');
 const app = express();
+const routes = require("./api/routes");
+const PORT = 8080;
 
-try {
-  if (!fs.existsSync(fileName)) {
-    fs.open(fileName, "w", function (err, file) {
-      if (err) throw err;
-      console.log(`${fileName} was created`);
-    });
-    fs.writeFileSync(fileName, "[]", {encoding: "utf-8"});
-  }
-} catch (error) {
-  console.log(error);
-}
+// try {
+//   if (!fs.existsSync(fileName)) {
+//     fs.open(fileName, "w", function (err, file) {
+//       if (err) throw err;
+//       console.log(`${fileName} was created`);
+//     });
+//     fs.writeFileSync(fileName, "[]", {encoding: "utf-8"});
+//   }
+// } catch (error) {
+//   console.log(error);
+// }
 
-/** Ruta que devuelve un array con todos los productos */
-app.get("/productos", (req, res) => {
-  fs.readFile(fileName, "utf8", function (err, data) {
-    if (err) throw err;
-    const json = JSON.parse(data);
-    res.send(json);
-  });
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/views/index.html");
 });
 
-/** Ruta que devuelve un producto elegido al azar */
-app.get("/productoRandom", (req, res) => { 
-  fs.readFile(fileName, "utf8", function (err, data) {
-    if (err) throw err;
-    const json = JSON.parse(data);
-    const random = Math.floor(Math.random() * json.length);
-    res.send(json[random]);
-  });
-})
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+
+//ya no es necesario utilizar body parser, ya que express lo incluye por defecto en la instalación
+app.use(express.urlencoded());
+app.use(express.json());
+
+app.use("/api", routes);
 
 /** Corriendo en el servidor 8080 */
-app.listen(8080, ()=>{ 
+app.listen(PORT, ()=>{ 
   console.log("server run on port 8080");
 });
 
-const file = new Container(fileName);
+// const file = new Container(fileName);
 
 /** muestra el arreglo de objetos con todos los productos. Si no hay nada, trae un arreglo vacío */
 // file.getAll();
