@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 // app.use(bodyParser.json());
 
 //ya no es necesario utilizar body parser, ya que express lo incluye por defecto en la instalación
-app.use(express.urlencoded());
+// app.use(express.urlencoded()); deprecado
 app.use(express.json());
 
 app.use("/api", routes);

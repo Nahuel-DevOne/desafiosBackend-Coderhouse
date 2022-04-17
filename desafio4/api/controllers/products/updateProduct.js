@@ -1,5 +1,5 @@
 const fs = require("fs");
-const path = "../../products.json";
+const path = "./products.json";
 
 const updateProduct = async (req, res) => {
   const id = Number(req.params.id);
