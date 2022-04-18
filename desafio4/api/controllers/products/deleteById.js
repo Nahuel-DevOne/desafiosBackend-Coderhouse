@@ -16,7 +16,7 @@ const deleteById = async (req, res) => {
     fs.writeFileSync(path, JSON.stringify(dataJson), function (err) {
       if (err) throw err;
     });
-    res.status(200).json(`Item with id ${id} was deleted`);
+    res.status(200).json(`Product with id ${id} was deleted`);
   }
 };
 
