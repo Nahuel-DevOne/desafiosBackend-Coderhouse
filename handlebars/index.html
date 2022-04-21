@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1>{{title}}</h1>
+    <p>{{body}}</p> -->
+
+    <div id="caja"></div>
+
+
+
+    <!-- Include Handlebars from a CDN -->
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<!-- <script>
+  // compile the template
+  var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
+  // execute the compiled template and print the output to the console
+  console.log(template({ doesWhat: "rocks!" }));
+</script> -->
+
+<script type="text/x-handlebars-template" id="template">
+    <h1>{{title}}</h1>
+    <p>{{body}}</p>
+</script>
+
+<!-- <script>
+    var template = Handlebars.compile($("#template").html());
+    var context = {
+        title: "My New Post",
+        body: "This is my first post!"
+    };
+    var html = template(context);
+    $("body").append(html);
+</script> -->
+
+<script>
+    const scriptHTML = document.querySelector("#template").innerHTML;
+    let template = Handlebars.compile(scriptHTML);
+    let html = template({
+        title: "My New Post",
+        body: "This is my first post!"
+    });
+    // console.log(hmtl);
+    const caja = document.querySelector("#caja");
+    caja.innerHTML = html;
+</script>
+</body>
+</html>
