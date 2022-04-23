@@ -21,6 +21,7 @@ class Container {
             if (err) throw err;
         });
         console.log(id);
+        return id;
     }
     getItemById(id) {
         fs.readFile(this.fileName, "utf8", function (err, data) {
@@ -36,7 +37,8 @@ class Container {
     }
     async getAll() {
         const products = await this.getData();
-        return console.log(products);         
+        // return console.log(products);         
+        return products;         
     }
     async deleteItemById(id) {
         const json = await this.getData();

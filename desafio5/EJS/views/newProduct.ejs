@@ -1,0 +1,18 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title><%=product.title%></title>
+  </head>
+  <body>
+    <span class="bg-dark bg-gradient col-12 col-md-9 col-lg-6">¡Producto agregado!</span>
+    <h1><%=product.title%></h1>
+    <p><%=product.price%></p>
+    <div><img src="<%=product.thumbnail%>" alt="<%=product.title%>" /></div>
+
+    <a href="/products" class="btn btn-lg btn-dark bg-gradient col-12 col-md-6 col-lg-3">Ir a productos</a>
+  </body>
+</html>

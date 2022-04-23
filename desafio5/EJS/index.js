@@ -1,20 +1,26 @@
 const express = require('express');
 const app = express();
 const routes = require("./api/routes");
+const Container = require("./container");
+const path = "./products.json";
+const container = new Container(path);
 const PORT = 8080;
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
-});
-
-/***** ya no es necesario utilizar body parser, ya que express lo incluye por defecto en la instalación *****/
-// const bodyParser = require("body-parser"); /** ya no es necesario */
-/***** y estas dos líneas: *****/
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
-/** Pueden ser reemplazadas por estas dos: */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
+
+//para usar el motor de plantilla ejs
+app.set("view engine", "ejs");
+
+//para renderizar el formulario de adicionar producto
+app.get("/", (req, res) => {
+  res.render("formAddProduct.ejs");
+});
+
+//para renderizar la vista de todos los productos
+app.get("/products", async(req, res) => {
+  res.render("index.ejs", { products: await container.getAll() });
+});
 
 /** Utilizando las rutas modularizadas */
 app.use("/api", routes);
