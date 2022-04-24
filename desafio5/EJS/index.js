@@ -1,3 +1,4 @@
+const fs = require("fs");
 const express = require('express');
 const app = express();
 const routes = require("./api/routes");
@@ -20,6 +21,31 @@ app.get("/", (req, res) => {
 //para renderizar la vista de todos los productos
 app.get("/products", async(req, res) => {
   res.render("index.ejs", { products: await container.getAll() });
+});
+
+//para guardar el producto del formulario de adicionar producto
+app.post("/productCreated", async(req, res) => {
+  // const { title, price, thumbnail } = req.body;
+  // const id = await container.save({ title: title, price: price, thumbnail: thumbnail });
+  // res.redirect(`/products/${id}`);
+
+  //NOTA: PASAR ESTO AL MÉTODO SAVE DE CONTAINER
+  const { title, price, thumbnail } = req.body;
+  const data = await fs.promises.readFile(path, "utf8", function (err, data) {
+    if (err) throw err;
+    return JSON.parse(data);
+  });
+  const dataJson = JSON.parse(data);
+  let lastProduct = dataJson[dataJson.length - 1];
+  let id = lastProduct.id + 1;
+  req.body.id = id;
+  req.body.price = parseFloat(price);
+  let product = { title: title, price: req.body.price, thumbnail: thumbnail, id: id };
+  dataJson.push(product);
+  fs.writeFileSync(path, JSON.stringify(dataJson), function (err) {
+    if (err) throw err;
+  });
+  res.status(200).json(req.body);
 });
 
 /** Utilizando las rutas modularizadas */
