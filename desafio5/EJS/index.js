@@ -1,7 +1,7 @@
 const fs = require("fs");
 const express = require('express');
 const app = express();
-const routes = require("./api/routes");
+// const routes = require("./api/routes");
 const Container = require("./container");
 const path = "./products.json";
 const container = new Container(path);
@@ -19,20 +19,13 @@ app.get("/", (req, res) => {
 });
 
 //para renderizar la vista de todos los productos
-app.get("/products", async(req, res) => {
+app.get("/products", async (req, res) => {
   res.render("index.ejs", { products: await container.getAll() });
 });
 
 //para guardar el producto del formulario de adicionar producto
-app.post("/productCreated", async(req, res) => {
-  // const { title, price, thumbnail } = req.body;
-  // const id = await container.save({ title: title, price: price, thumbnail: thumbnail });
-  // res.redirect(`/products/${id}`);
+app.post("/productCreated", async (req, res) => {
 
-  // res.render("productCreated.ejs", { product: { title: title, price: price, thumbnail: thumbnail, id: id } });
-
-  //NOTA: PASAR ESTO AL MÉTODO SAVE DE CONTAINER
-  /** Este pedazo de código funciona correctamente guardando un producto en el json a través del form */
   const { title, price, thumbnail } = req.body;
   const data = await fs.promises.readFile(path, "utf8", function (err, data) {
     if (err) throw err;
@@ -46,26 +39,20 @@ app.post("/productCreated", async(req, res) => {
   let product = { title: title, price: req.body.price, thumbnail: thumbnail, id: id };
   dataJson.push(product);
 
-  res.render("productCreated.ejs", { product: product });
-
   fs.writeFileSync(path, JSON.stringify(dataJson), function (err) {
     if (err) throw err;
   });
+
+  res.render("productCreated.ejs", { product: product });
+
   res.status(200).json(req.body);
-
-    /** y renderiza el EJS */
-
-  // res.render("productCreated.ejs", { product: { title: title, price: price, thumbnail: thumbnail, id: id } });
-
-  // const id = await container.save({ title: title, price: price, thumbnail: thumbnail });
-  // res.redirect(`/products/${id}`);
 
 });
 
 /** Utilizando las rutas modularizadas */
-app.use("/api", routes);
+// app.use("/api", routes);
 
 /** Corriendo en el servidor 8080 */
-app.listen(PORT, ()=>{ 
+app.listen(PORT, () => {
   console.log("server run on port 8080");
 });

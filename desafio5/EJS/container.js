@@ -13,32 +13,35 @@ class Container {
         return JSON.parse(data);
     }
     async save(obj) {
-        const json = await this.getData();
-        const id = json.length + 1;
-        obj.id = id;
-        json.push(obj);
-        fs.writeFile(this.fileName, JSON.stringify(json), function (err) {
+        // const json = await this.getData();
+        // const id = json.length + 1;
+        // obj.id = id;
+        // json.push(obj);
+        // fs.writeFile(this.fileName, JSON.stringify(json), function (err) {
+        //     if (err) throw err;
+        // });
+        // console.log(id);
+        // return id;
+
+
+        const { title, price, thumbnail } = req.body;
+        const data = await fs.promises.readFile(path, "utf8", function (err, data) {
+            if (err) throw err;
+            return JSON.parse(data);
+        });
+        const dataJson = JSON.parse(data);
+        let lastProduct = dataJson[dataJson.length - 1];
+        let id = lastProduct.id + 1;
+        req.body.id = id;
+        req.body.price = parseFloat(price);
+        let product = { title: title, price: req.body.price, thumbnail: thumbnail, id: id };
+        dataJson.push(product);
+
+        fs.writeFileSync(path, JSON.stringify(dataJson), function (err) {
             if (err) throw err;
         });
-        console.log(id);
-        return id;
 
-        // const { title, price, thumbnail } = req.body;
-        // const data = await fs.promises.readFile(path, "utf8", function (err, data) {
-        //     if (err) throw err;
-        //     return JSON.parse(data);
-        // });
-        // const dataJson = JSON.parse(data);
-        // let lastProduct = dataJson[dataJson.length - 1];
-        // let id = lastProduct.id + 1;
-        // req.body.id = id;
-        // req.body.price = parseFloat(price);
-        // let product = { title: title, price: req.body.price, thumbnail: thumbnail, id: id };
-        // dataJson.push(product);
-        // fs.writeFileSync(path, JSON.stringify(dataJson), function (err) {
-        //     if (err) throw err;
-        // });
-        // res.status(200).json(req.body);
+        return product;
 
     }
     getItemById(id) {
