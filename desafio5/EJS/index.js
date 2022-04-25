@@ -27,11 +27,7 @@ app.get("/products", async (req, res) => {
 app.post("/productCreated", async (req, res) => {
 
   const { title, price, thumbnail } = req.body;
-  const data = await fs.promises.readFile(path, "utf8", function (err, data) {
-    if (err) throw err;
-    return JSON.parse(data);
-  });
-  const dataJson = JSON.parse(data);
+  const dataJson = await container.getData();
   let lastProduct = dataJson[dataJson.length - 1];
   let id = lastProduct.id + 1;
   req.body.id = id;
