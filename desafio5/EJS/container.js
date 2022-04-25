@@ -22,6 +22,24 @@ class Container {
         });
         console.log(id);
         return id;
+
+        // const { title, price, thumbnail } = req.body;
+        // const data = await fs.promises.readFile(path, "utf8", function (err, data) {
+        //     if (err) throw err;
+        //     return JSON.parse(data);
+        // });
+        // const dataJson = JSON.parse(data);
+        // let lastProduct = dataJson[dataJson.length - 1];
+        // let id = lastProduct.id + 1;
+        // req.body.id = id;
+        // req.body.price = parseFloat(price);
+        // let product = { title: title, price: req.body.price, thumbnail: thumbnail, id: id };
+        // dataJson.push(product);
+        // fs.writeFileSync(path, JSON.stringify(dataJson), function (err) {
+        //     if (err) throw err;
+        // });
+        // res.status(200).json(req.body);
+
     }
     getItemById(id) {
         fs.readFile(this.fileName, "utf8", function (err, data) {
@@ -38,7 +56,7 @@ class Container {
     async getAll() {
         const products = await this.getData();
         // return console.log(products);         
-        return products;         
+        return products;
     }
     async deleteItemById(id) {
         const json = await this.getData();

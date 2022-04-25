@@ -9,13 +9,15 @@
   </head>
   <body>
     <h1 class="display-2 text-dark text-center bg-light p-3 mb-5">Producto nuevo</h1> 
-    <span class="bg-dark bg-gradient col-12 col-md-9 col-lg-6">¡Producto agregado!</span>
+    <div class="container">
+      <h2 class="bg-dark bg-gradient text-white text-center rounded p-2 mb-3">¡Producto agregado!</h2>
+      <div class="card m-3 mt-3 bg-light align-items-center justify-content-center p-2 m-auto">
+          <img src="<%= product.thumbnail %>" alt="<%= product.title %>" />
+          <h3 class="card-title"><%= product.title %></h3>
+          <p class="card-title">$<%= product.price %></p>
+        </div>
+      <a href="/products" class="btn btn-lg btn-dark bg-gradient col-12 col-md-6 col-lg-3 mt-3">Ir a productos</a>
+    </div>
     <!-- Card del producto nuevo -->
-    <div class="card m-3 mt-3 bg-light align-items-center justify-content-center p-2 m-auto">
-        <img src="<%= product.thumbnail %>" alt="<%= product.title %>" />
-        <h3 class="card-title"><%= product.title %></h3>
-        <p class="card-title">$<%= product.price %></p>
-      </div>
-    <a href="/products" class="btn btn-lg btn-dark bg-gradient col-12 col-md-6 col-lg-3">Ir a productos</a>
   </body>
 </html>

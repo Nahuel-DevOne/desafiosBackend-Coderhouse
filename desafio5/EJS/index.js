@@ -29,7 +29,10 @@ app.post("/productCreated", async(req, res) => {
   // const id = await container.save({ title: title, price: price, thumbnail: thumbnail });
   // res.redirect(`/products/${id}`);
 
+  // res.render("productCreated.ejs", { product: { title: title, price: price, thumbnail: thumbnail, id: id } });
+
   //NOTA: PASAR ESTO AL MÉTODO SAVE DE CONTAINER
+  /** Este pedazo de código funciona correctamente guardando un producto en el json a través del form */
   const { title, price, thumbnail } = req.body;
   const data = await fs.promises.readFile(path, "utf8", function (err, data) {
     if (err) throw err;
@@ -42,10 +45,21 @@ app.post("/productCreated", async(req, res) => {
   req.body.price = parseFloat(price);
   let product = { title: title, price: req.body.price, thumbnail: thumbnail, id: id };
   dataJson.push(product);
+
+  res.render("productCreated.ejs", { product: product });
+
   fs.writeFileSync(path, JSON.stringify(dataJson), function (err) {
     if (err) throw err;
   });
   res.status(200).json(req.body);
+
+    /** y renderiza el EJS */
+
+  // res.render("productCreated.ejs", { product: { title: title, price: price, thumbnail: thumbnail, id: id } });
+
+  // const id = await container.save({ title: title, price: price, thumbnail: thumbnail });
+  // res.redirect(`/products/${id}`);
+
 });
 
 /** Utilizando las rutas modularizadas */
