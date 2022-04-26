@@ -12,29 +12,31 @@ class Container {
         return JSON.parse(data);
     }
     async save(obj) {
-        const json = await this.getData();
-        const id = json.length + 1;
-        obj.id = id;
-        json.push(obj);
-        fs.writeFile(this.fileName, JSON.stringify(json), function (err) {
-            if (err) throw err;
-        });
-        console.log(id);
-        return id;
-
-        // const dataJson = await container.getData();
-        // let lastProduct = dataJson[dataJson.length - 1];
-        // let id = lastProduct.id + 1;
-        // req.body.id = id;
-        // req.body.price = parseFloat(price);
-        // let product = { title: title, price: req.body.price, thumbnail: thumbnail, id: id };
-        // dataJson.push(product);
-
-        // fs.writeFileSync(path, JSON.stringify(dataJson), function (err) {
+        /** Código anterior */
+        // const json = await this.getData();
+        // const id = json.length + 1;
+        // obj.id = id;
+        // json.push(obj);
+        // fs.writeFile(this.fileName, JSON.stringify(json), function (err) {
         //     if (err) throw err;
         // });
+        // console.log(id);
+        // return id;
+        /** fin código anterior */
 
-        // return product
+        /** código nuevo para guardar un producto del form y retornarlo */
+        const dataJson = await this.getData();
+        let lastProduct = dataJson[dataJson.length - 1];
+        let id = lastProduct.id + 1;
+        obj.id = id;
+        dataJson.push(obj);
+        fs.writeFileSync(this.fileName, JSON.stringify(dataJson), function (err) {
+            if (err) throw err;
+          });
+
+        return obj;
+        /** fin código nuevo para guardar un producto del form y retornarlo */
+
     }
     getItemById(id) {
         fs.readFile(this.fileName, "utf8", function (err, data) {

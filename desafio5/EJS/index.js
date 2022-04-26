@@ -27,19 +27,11 @@ app.get("/products", async (req, res) => {
 app.post("/productCreated", async (req, res) => {
 
   const { title, price, thumbnail } = req.body;
-  const dataJson = await container.getData();
-  let lastProduct = dataJson[dataJson.length - 1];
-  let id = lastProduct.id + 1;
-  req.body.id = id;
+  id = req.body.id 
   req.body.price = parseFloat(price);
   let product = { title: title, price: req.body.price, thumbnail: thumbnail, id: id };
-  dataJson.push(product);
 
-  fs.writeFileSync(path, JSON.stringify(dataJson), function (err) {
-    if (err) throw err;
-  });
-
-  res.render("productCreated.ejs", { product: product });
+  res.render("productCreated.ejs", { product: await container.save(product) });
 
   res.status(200).json(req.body);
 
