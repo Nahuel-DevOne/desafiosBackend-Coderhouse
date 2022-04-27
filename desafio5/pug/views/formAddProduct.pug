@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title form - agregar producto
+    body 
+        h1 Agrega un producto
+        form(action="/productCreated", method="post") 
+            input.form-control(type="text", name="title", id="title", placeholder="Title")
+            input.form-control(type="text", name="price", id="price", placeholder="Price")
+            input.form-control(type="text", name="thumbnail", id="thumbnail", placeholder="Thumbnail")
+            input.btn(type="submit", value="save")
+        a.btn(href="/products") Ir a productos

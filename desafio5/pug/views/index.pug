@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Productos
+
+    body 
+        h1 Todos nuestros productos
+        ul
+            for product in products 
+                li
+                    img(src=product.thumbnail, alt="")
+                    h3= product.title
+                    p $
+                        span= product.price
+        a.btn(href="/") Agregar producto 
