@@ -11,8 +11,9 @@
     <h1 class="display-2 text-dark text-center bg-light p-3 mb-5">Producto nuevo</h1> 
     <div class="container">
       <h2 class="bg-dark bg-gradient text-white text-center rounded p-2 mb-3">¡Producto agregado!</h2>
+        <!-- Card del producto nuevo -->
       <div class="card m-3 mt-3 bg-light align-items-center justify-content-center p-2 m-auto">
-          <img src="{{product.thumbnail}}" alt="<%= product.title %>" />
+          <img src="{{product.thumbnail}}" alt="{{product.title}}" />
           <h3 class="card-title">{{product.title}}</h3>
           <p class="card-title">${{product.price}}</p>
         </div>
@@ -21,6 +22,5 @@
         <a href="/" class="btn btn-lg btn-danger bg-gradient col-5 col-md-6 col-lg-3 m-2">Agregar producto</a>
       </div>
     </div>
-    <!-- Card del producto nuevo -->
   </body>
 </html>

@@ -1,32 +1,20 @@
 const fs = require("fs");
 const express = require('express');
-var handlebars = require("express-handlebars").create({
-    defaultLayout: "main",
-  });
 const app = express();
 const Container = require("./container");
 const path = "./products.json";
 const container = new Container(path);
 const PORT = 8080;
-// const { engine } = require('express-handlebars');
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-/** para usar el motor de plantilla Handlebars */
-// app.engine("hbs", engine({  
-//     extname: ".hbs",
-//     defaultLayout: "main.hbs",
-//     partialsDir: __dirname + "views/partials",
-// }));
-
-// app.set("view engine", "hbs");
-// app.set("views", "./views");
-
+/** para usar Handlebars */
+var handlebars = require("express-handlebars").create({
+    defaultLayout: "main",
+  });
 app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
-
 
 //para renderizar el formulario de adicionar producto
 app.get("/", (req, res) => {
