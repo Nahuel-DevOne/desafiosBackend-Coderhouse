@@ -1,0 +1,6 @@
+Para continuar el desarrollo del proyecto final, voy a utilizar EJS. 
+Es un motor de plantilla sencillo, que utiliza la misma sintáxis de JavaScript a diferencia de los otros dos motores vistos,
+que tienen una sintáxis propia para operar bucles.
+Y, si bien presenta una desventaja con respecto a sus competidores, para anotar las variables y la lógica de programación (su sintáxis 
+de etiqueta con porcentajes es incómoda), la instalación y su uso es tan amigable que compensa esa falencia que puede salvarse.
+En definitiva, creo que es un buen motor de plantilla para comenzar.  
