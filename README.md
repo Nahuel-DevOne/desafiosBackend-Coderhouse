@@ -29,6 +29,7 @@ Sigo haciendo el curso por lo cual este repositorio se encuentra en desarrollo, 
 - [Node.js](https://nodejs.org/es/)
 - [Express](https://expressjs.com/)
 - [EJS](https://ejs.co/)
+- [Handlebars](https://handlebarsjs.com/)
 - [PUG](https://pugjs.org/api/getting-started.html)
 - [SQL: MySQL](https://www.mysql.com/)
 - [NoSQL: MongoDB](https://www.mongodb.com/es)
