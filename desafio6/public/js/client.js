@@ -29,6 +29,7 @@ window.onload = ()=> {
             text: document.getElementById('text').value,
         }
         socket.emit("messageNew",newMessage)
+        document.getElementById('text').value = '';
     }
  
 
