@@ -14,13 +14,13 @@ app.use(express.urlencoded({ extended: true }))
 app.set("view engine", "ejs");
 
 //para renderizar el formulario de adicionar producto
-app.get("/", (req, res) => {
-  res.render("formAddProduct.ejs");
-});
+// app.get("/", async(req, res) => {
+//   res.render("formAddProduct.ejs");
+// });
 
 //para renderizar la vista de todos los productos
-app.get("/products", async (req, res) => {
-  res.render("index.ejs", { products: await container.getAll() });
+app.get("/", async (req, res) => {
+  res.render("formAddProduct.ejs", { products: await container.getAll() });
 });
 
 //para guardar el producto del formulario de adicionar producto
