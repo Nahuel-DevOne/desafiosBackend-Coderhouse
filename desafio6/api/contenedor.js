@@ -1,12 +1,7 @@
 class Contenedor{
     constructor(){
-        this.products = [
-            {title: 'Producto prueba ',
-            price: '1000',
-            url: 'https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png',
-            id: 'ID Producto'},
-        ]
-        this.sequenceId = 0
+        this.products = [];
+        this.sequenceId = 0;
     }
 
     get productsAll(){
