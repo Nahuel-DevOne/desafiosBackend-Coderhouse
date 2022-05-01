@@ -28,13 +28,16 @@
     /*variables para de trabajo para el Ecommerce*/
     --colorTitulo: #212529;
     --colorTexto: #464646;
-    --colorTextoSecundario: #2A7AE4;
+    --colorTextoSecundario: rgb(13, 46, 155);
     --colorFondo: #f8f9fa;
     --colorFondoSecundario: #e9e9e9;
-    --colorInputBorder: #d1d3d9;
-    /* --colorFondoContacto:#EAF2FD;
-    --formInputBorderBottom: rgb(191, 191, 191);
-    --formButtonHover: #265ea6; */
+    --colorBorderBox: #212529;
+    --colorBorderInput: #d1d3d9;
+    --colorBoxChatEmail: #212529;
+    --ColorBoxChatTimestamp: #a8a8a8;
+    --colorBoxChatTexto: rgb(13, 46, 155);
+    --colorSombra: #464646;
+    --formButtonHover: #265ea6;
     --fuenteUno: 'Raleway', sans-serif;
 }
 
@@ -60,103 +63,74 @@ h1 {
 
 #formProd {
     padding: 30px;
-    background: rgba( 255, 255, 255, 0.35 );
-    box-shadow: 3px 3px 10px #464646;
+    box-shadow: 3px 3px 10px var(--colorSombra);
     backdrop-filter: blur( 10.5px );
     -webkit-backdrop-filter: blur( 10.5px);
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid var(--colorBorderBox);
 }
-
-
 
 .box {
     position: relative;
-    background: rgba( 255, 255, 255, 0.45 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    background-color: var(--colorFondo);
+    box-shadow: 3px 3px 10px var(--colorSombra);
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    border: 3px solid #051924;
-    margin-top: 25px;
-    margin-bottom: 20px;
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
-}
-.box.box-primary {
-    border-top-color: #051924;
+    border-radius: 5px;
+    border: 1px solid var(--colorBorderBox);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    max-width: 100%;
 }
 
-.box-header {
-    color: #444;
-    display: block;
+.box__header {
+    color: var(--colorTexto);
     padding: 10px;
     position: relative;
+    border-bottom: 2px solid var(--colorBorderBox);
 }
 
-.box-header.with-border {
-    border-bottom: 3px solid #051924;
-}
-
-.box-title {
-    display: inline-block;
-    font-size: 18px;
+.box__header--title {
+    font-size: 1.5rem;
     margin: 0;
     line-height: 1;
 }
 
-.box-body {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
+.box__messages {
     padding: 10px;
 }
 
-.direct-chat-messages {
+.box__messages__chat {
     -webkit-transform: translate(0,  0);
     -ms-transform: translate(0,  0);
     -o-transform: translate(0,  0);
     transform: translate(0,  0);
-    padding: 10px;
-    height: 450px;
+    padding: 0rem;
+    height: auto;
     overflow: auto;
 }
-.direct-chat-name {
-    color: black;
+.box__messages__chat--name {
+    color: var(--colorBoxChatEmail);
     font-weight: 600;
 }
-.direct-chat-timestamp {
-    color: #999;
+.box__messages__chat--timestamp {
+    color: var(--ColorBoxChatTimestamp);
 }
 
-.direct-chat-text {
+.box__messages__chat--text {
+    background-color: var(--colorFondoSecundario);
+    border: 1px solid var(--colorBorderInput);
     border-radius: 5px;
-    position: relative;
-    padding: 5px 10px;
-    background: #e9e9e9;
-    border: 1px solid #d1d3d9;
-    margin: 5px 0 0 5px;
-    color: rgb(13, 46, 155);
+    color: var(--colorBoxChatTexto);
+    margin: 0.5rem 0rem 0.5rem 0rem;
+    padding: 0.5rem;
+    outline: none;
+    resize: none;
+    max-width: 100vw;
+    /* overflow:scroll; */
 }
 
-.box-footer {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-top: 1px solid #f4f4f4;
-    padding: 10px;
-    background-color: none;
-}
-
-.col-8 {
-    background: rgba( 255, 255, 255, 0.35 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 10.5px );
-    -webkit-backdrop-filter: blur( 10.5px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-}
+/* 
+@media (max-width: 768px) {
+    
+} */

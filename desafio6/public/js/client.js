@@ -9,16 +9,18 @@ window.onload = ()=> {
 
     function loadMessages(data) {
         const html = data.map((elem, index) => {
-            return(`<div class="direct-chat-info clearfix">
-                         <span id="chatName" class="direct-chat-name pull-right">${elem.email}</span>
-                        <span id= "chatDate" class="direct-chat-timestamp pull-left">${elem.date}</span>
+            return(`<div class="direct-chat-info">
+                        <span id="chatName" class="box__messages__chat--name me-2">${elem.email}</span>
+                        <span id= "chatDate" class="box__messages__chat--timestamp">${elem.date}</span>
                     </div>
-                         <div id="chatText" class="direct-chat-text">${elem.text}</div>
+                    <div class="d-flex justify-content-center">
+                        <textarea name="messages-chat" id="chatText" class="box__messages__chat--text" cols="95vw" rows="2">${elem.text}</textarea>
+                    </div>
                      `)
         }).join(" ");
         document.getElementById('messages').innerHTML = html;
     }
-    document.getElementById('frmPasion').addEventListener('submit', (e)=> {
+    document.getElementById('box__form').addEventListener('submit', (e)=> {
         e.preventDefault()
         agregarMensaje()
     })
@@ -31,7 +33,6 @@ window.onload = ()=> {
         socket.emit("messageNew",newMessage)
         document.getElementById('text').value = '';
     }
- 
 
     async function loadProds(listProd) {
         let htmlProd = {}

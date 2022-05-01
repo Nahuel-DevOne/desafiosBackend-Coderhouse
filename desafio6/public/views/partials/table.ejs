@@ -1,28 +1,34 @@
-<div id="NuevaTabla"></div>
+<!-- <div id="NuevaTabla"></div> -->
 <div class="table-responsive mt-3">
-    <table class="table table-dark table-hover table-sm table-bordered">
-      <caption class="fs-3">Stock de productos</caption>
-      <thead>
-        <tr class="text-center">
-            <th class="fs-2 lead text-white">#</th>
-            <th class="fs-2 lead text-white">Nombre</th>
-            <th class="fs-2 lead text-white">Precio</th>
-            <th class="fs-2 lead text-white">imagen</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% listProd.forEach(prod => { %>
+  <table class="table table-dark table-hover table-sm table-bordered">
+    <caption class="fs-3">Stock de productos</caption>
+    <thead>
+      <tr class="text-center">
+        <th class="fs-2 lead text-white">#</th>
+        <th class="fs-2 lead text-white">Nombre</th>
+        <th class="fs-2 lead text-white">Precio</th>
+        <th class="fs-2 lead text-white">imagen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% listProd.forEach(prod=> { %>
         <tr class="table-light text-center">
-            <td class="fs-3 lead"> <%=prod.id %> </td>
-            <td class="fs-3 lead"><%= prod.title %></td>
-            <td class="fs-3 lead">$<%= prod.price %></td>
-            <td><img src="<%= prod.url %>" alt="<%=prod.title %>" width="25" ></td>
+          <td class="fs-3 lead">
+            <%=prod.id %>
+          </td>
+          <td class="fs-3 lead">
+            <%= prod.title %>
+          </td>
+          <td class="fs-3 lead">$<%= prod.price %>
+          </td>
+          <td><img src="<%= prod.url %>" alt="<%=prod.title %>" width="25"></td>
         </tr>
         <% }); %>
-      </tbody>
-    </table>
-  </div>
-<div class="entry">
+    </tbody>
+  </table>
+</div>
+
+<!-- <div class="entry">
 
     
-</div>
+</div> -->
