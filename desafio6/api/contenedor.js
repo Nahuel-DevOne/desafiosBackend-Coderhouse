@@ -14,7 +14,6 @@ class Contenedor{
 
     saveProduct(product){
         try{
-
             this.sequenceId++
             const newProduct = {
                 title: product.title,
@@ -37,8 +36,7 @@ class Contenedor{
             throw new Error('Hubo un error al buscar')
         }
     }
-
-
+    
     updateProduct(idProduct, product){
         try {
             const productsTemp = []
@@ -60,7 +58,7 @@ class Contenedor{
             this.products = productsTemp
             return prodUpdated
         } catch(error){
-            throw new Error(`Ocurrió un error al actualizar: ${error.message}`)
+            throw new Error(`Error al actualizar: ${error.message}`)
         }
     }
 
@@ -68,7 +66,7 @@ class Contenedor{
         try {
             this.products = this.products.filter(prod => prod.id != idProduct)
         } catch(error){
-            throw new Error(`Ocurrió un error al eliminar: ${error.message}`)
+            throw new Error(`Error al eliminar: ${error.message}`)
         }
     }
 }
