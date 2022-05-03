@@ -130,7 +130,6 @@ h1 {
     /* overflow:scroll; */
 }
 
-
 @media (max-width: 768px) {
     .product-link{
         font-size: 0.7rem;
