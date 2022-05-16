@@ -10,7 +10,7 @@ const knex = require('knex')(
             charset: 'utf8'
         },
         pool: {
-            min: 0,
+            min: 2,
             max: 8
         }
     }
