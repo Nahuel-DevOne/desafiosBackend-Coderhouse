@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
+
+:root {
+    background-color: #FFFFFF;
+    color:#464646;
+    /* font-family: 'Raleway', sans-serif; */
+    line-height: 1rem;
+    scroll-behavior: smooth;
+    /*Variables de colores personalizados*/
+    --colorGrisFuerte: #3c4146;
+    --colorGrisClarito: #ccc;
+    --colorGrisIntermedio: #a8a8a8;
+    --colorMarronGris: #484848;
+    --colorNaranjaClaro: #ffbe50;
+    --colorNaranjaFogata: rgba(255, 146, 3, 0.8);
+    --colorAzulFuerte: rgb(13, 5, 90);
+    --colorAzulClarito: #37bcf9;
+    --colorAzulPetroleo: #00538c;
+    /*Variables de colores de Bootstrap*/
+    --colorDark: #212529;
+    --colorLight: #f8f9fa;
+    --colorSuccess: #198754;
+    --colorinfo: #0dcaf0;
+    --colorWarning: #ffc107;
+    --colorDanger: #dc3545;
+    --colorPrimary: #0d6efd;
+    --colorSecondary: #6c757d;
+    /*variables para de trabajo para el Ecommerce*/
+    --colorTitulo: #212529;
+    --colorTexto: #464646;
+    --colorTextoSecundario: rgb(13, 46, 155);
+    --colorFondo: #f8f9fa;
+    --colorFondoSecundario: #e9e9e9;
+    --colorBorderBox: #212529;
+    --colorBorderInput: #d1d3d9;
+    --colorTextChatEmail: #212529;
+    --ColorTextChatTimestamp: #a8a8a8;
+    --colorTextChatmessage: rgb(13, 46, 155);
+    --colorSombra: #464646;
+    --formButtonHover: #265ea6;
+    --fuenteUno: 'Raleway', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fuenteUno);
+    font-weight: 600;
+}
+/* body{
+    background-image: url("../views/img/");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+} */
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--colorTitulo);
+    margin-bottom: 1rem;
+}
+
+#formProd {
+    padding: 30px;
+    box-shadow: 3px 3px 10px var(--colorSombra);
+    backdrop-filter: blur( 10.5px );
+    -webkit-backdrop-filter: blur( 10.5px);
+    border-radius: 10px;
+    border: 1px solid var(--colorBorderBox);
+}
+
+.box {
+    position: relative;
+    background-color: var(--colorFondo);
+    box-shadow: 3px 3px 10px var(--colorSombra);
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 5px;
+    border: 1px solid var(--colorBorderBox);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    max-width: 100%;
+}
+
+.box__header {
+    color: var(--colorTexto);
+    padding: 10px;
+    position: relative;
+    border-bottom: 2px solid var(--colorBorderBox);
+}
+
+.box__header--title {
+    font-size: 1.5rem;
+    margin: 0;
+    line-height: 1;
+}
+
+.box__messages {
+    padding: 10px;
+}
+
+.box__messages__chat {
+    -webkit-transform: translate(0,  0);
+    -ms-transform: translate(0,  0);
+    -o-transform: translate(0,  0);
+    transform: translate(0,  0);
+    padding: 0rem;
+    height: auto;
+    overflow: auto;
+}
+.box__messages__chat--name {
+    color: var(--colorTextChatEmail);
+    font-weight: 600;
+}
+.box__messages__chat--timestamp {
+    color: var(--ColorTextChatTimestamp);
+}
+
+.box__messages__chat--text {
+    background-color: var(--colorFondoSecundario);
+    border: 1px solid var(--colorBorderInput);
+    border-radius: 5px;
+    color: var(--colorTextChatmessage);
+    margin: 0.5rem 0rem 0.5rem 0rem;
+    padding: 0.5rem;
+    outline: none;
+    resize: none;
+    max-width: 100vw;
+    /* overflow:scroll; */
+}
+
+@media (max-width: 768px) {
+    .product-link{
+        font-size: 0.7rem;
+    }    
+}
