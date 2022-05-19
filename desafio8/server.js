@@ -1,62 +1,80 @@
-const express = require("express");
+/* MODULOS */
+const express = require('express');
 const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
-const Productos = require("./api/Contenedor");
-const HistoryChat = require("./api/chat");
+const generateRandomProduct = require('./src/containers/FakerContainer')
 
-// Se puede llamar con una variable y con eso uno va a la ruta que tiene en routes
-const myRoutes = require("./api/routes");
+const Container = require("./src/containers/Container");
+const { optionsMySQL } = require("./src/utils/optionsMySQL");
+const { optionsSQLite } = require("./src/utils/optionsSQLite");
 
-//module.exports = myRoutes;
+const tableProducts = "products";
+const tableMessages = "messages";
+
+/* INSTANCIACION */
 const app = express();
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 
-const storProd = new Productos();
-const history = new HistoryChat();
-// console.log(storProd, history)
+const apiProducts = new Container(optionsMySQL, tableProducts);
+const apiMessages = new Container(optionsSQLite, tableMessages);
 
-//const messages = [];
-io.on("connection", async (socket) => {
-  // Esto se ejecuta por cada cliente conectado
-  console.log("Un cliente se ha conectado");
+let listProd = generateRandomProduct(5)
 
-  //emit envia
-  socket.emit("productos", storProd.productsAll);
-
-  //on escucha
-  socket.on("guardarProducto", (nuevoProducto) => {
-    storProd.saveProduct(nuevoProducto);
-    io.sockets.emit("productos", storProd.productsAll);
-  });
-
-  const message = await history.loadMessage();
-  socket.emit("messages", message);
-
-  socket.on("messageNew", async (data) => {
-    await history.saveMessage(data);
-    const message2 = await history.loadMessage();
-    io.sockets.emit("messages", message2);
-  });
-
-  socket.emit("products", storProd.productsAll);
-
-  socket.on("newProd", (dataProd) => {
-    storProd.saveProduct(dataProd);
-    io.sockets.emit("products", storProd.productsAll);
-  });
-});
-
-app.use(express.static("./public"));
-app.use(express.urlencoded({ extended: true }));
+/* MIDDLEWARES */
 app.use(express.json());
-app.use(myRoutes);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 app.set("view engine", "ejs");
 app.set("views", "./public/views");
 
-//server
+//app.get('/api/productos-test', (req,res)=> {res.status(200).json(listProd)})
+
+/* WEBSOCKET */
+io.on("connection", async (socket) => {
+    console.log(`Nuevo cliente conectado ${socket.id}`);
+    //------- Enviar histórico de productos
+    socket.emit("products", await apiProducts.listAll());
+  
+    //------- Escuchar nuevos productos
+    socket.on("newProduct", async (product) => {
+      console.log(product);
+      await apiProducts.save(product);
+  
+      //Actualización de la vista de productos
+      io.sockets.emit("products", await apiProducts.listAll());
+      console.log(await apiProducts.listAll());
+    });
+  
+    //------- Enviar histórico de mensajes
+    socket.emit("messages", await apiMessages.listAll());
+  
+    //------- Escuchar nuevos mensajes
+    socket.on("newMessage", async (msg) => {
+      msg.date = new Date().toLocaleString();
+      const message = {
+        author: msg.email,
+        msg: msg.text,
+        date: msg.date,
+      }
+      await apiMessages.save(message);
+  
+      //Actualización de la vista de mensajes
+      io.sockets.emit("messages", await apiMessages.listAll());
+    });
+});
+
+app.get('/', (req, res) => {res.render('index', {listProd});})
+app.get('/api/productos-test', (req, res) => {res.render('fakeProd', {listProd: listProd});})
+
+
+/* SERVIDOR */
 const PORT = 8080;
-httpServer.listen(PORT, () =>
-  console.log("Servidor corriendo en http://localhost:8080")
-);
+
+const server = httpServer.listen(PORT, () => {
+  console.log(`Servidor http escuchado en puerto http://localhost:${server.address().port}`);
+  console.log(listProd);
+});
+
+server.on("error", (error) => console.error(`Error en servidor ${error}`));

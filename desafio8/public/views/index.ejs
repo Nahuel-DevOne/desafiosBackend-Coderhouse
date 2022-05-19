@@ -28,7 +28,11 @@
                     <%- include('partials/form.ejs'); %>
                 </section>
                 <!-- Sección de la tabla de productos -->
-                <section id="NuevaTabla"></section>
+                <section id="NuevaTabla">
+                    <% if(listProd) {%>
+                    <%- include('partials/table.ejs'); %>
+                    <% } %>
+                </section>
                 <!-- Sección del chat -->
                 <section>
                     <%- include('partials/chat.ejs'); %>
