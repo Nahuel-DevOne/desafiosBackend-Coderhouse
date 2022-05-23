@@ -136,7 +136,7 @@ db.messages.count()
 db.products.insertOne(
     {
         title: "Product 11",
-        thumbnail: "https://placekitten.com/300/200",
+        thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
         price: 3970
     }
 )
@@ -179,7 +179,7 @@ mongod --auth
 //verificando que el usuario pepe no puede cambiar la información
 db.products.insertOne({
         title: "Product 12",
-        thumbnail: "https://placekitten.com/300/200",
+        thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
         price: 12000
     })
 
