@@ -1,0 +1,183 @@
+//desafío 9: CRUD con Mongo en la terminal
+
+//creando la base de datos ecommerce
+use ecommerce
+
+//creando las colecciones de mensajes y productos
+db.createCollection("messages")
+db.createCollection("products")
+
+//1) y 2)
+//agregando los documentos a messages
+db.messages.insert(
+    [
+        {
+            email: "email1@gmail.com",
+            message: "Hi",
+            time: "23/05/2022, 11:23:21"
+        },
+        {
+            email: "email2@gmail.com",
+            message: "Hello",
+            time: "23/05/2022, 11:23:44"
+        },
+        {
+            email: "email3@gmail.com",
+            message: "how are you?",
+            time: "23/05/2022, 11:23:50"
+        },
+        {
+            email: "email4@gmail.com",
+            message: "I'm ok",
+            time: "23/05/2022, 11:23:57"
+        },
+        {
+            email: "email5@gmail.com",
+            message: "what about you?",
+            time: "23/05/2022, 11:24:08"
+        },
+        {
+            email: "email6@gmail.com",
+            message: "I'm ok too",
+            time: "23/05/2022, 11:24:11"
+        },
+        {
+            email: "email7@gmail.com",
+            message: "what are you doing?",
+            time: "23/05/2022, 11:24:16"
+        },
+        {
+            email: "email8@gmail.com",
+            message: "we are learning mongoDB",
+            time: "23/05/2022, 11:24:25"
+        },
+        {
+            email: "email9@gmail.com",
+            message: "cool",
+            time: "23/05/2022, 11:24:29"
+        },
+        {
+            email: "email10@gmail.com",
+            message: "NoSQL rules",
+            time: "23/05/2022, 11:24:35"
+        }
+    ]
+)
+
+//agregando los documentos a products
+db.products.insert(
+    [
+        {
+            title: "Product 1",
+            thumbnail: "https://placekitten.com/300/200",
+            price: 120
+        },
+        {
+            title: "Product 2",
+            thumbnail: "https://placekitten.com/300/200",
+            price: 580
+        },
+        {
+            title: "Product 3",
+            thumbnail: "https://placekitten.com/300/200",
+            price: 900
+        },
+        {
+            title: "Product 4",
+            thumbnail: "https://placekitten.com/300/200",
+            price: 1280
+        },
+        {
+            title: "Product 5",
+            thumbnail: "https://placekitten.com/300/200",
+            price: 1700
+        },
+        {
+            title: "Product 6",
+            thumbnail: "https://placekitten.com/300/200",
+            price: 2300
+        },
+        {
+            title: "Product 7",
+            thumbnail: "https://placekitten.com/300/200",
+            price: 2860
+        },
+        {
+            title: "Product 8",
+            thumbnail: "https://placekitten.com/300/200",
+            price: 3350
+        },
+        {
+            title: "Product 9",
+            thumbnail: "https://placekitten.com/300/200",
+            price: 4320
+        },
+        {
+            title: "Product 10",
+            thumbnail: "https://placekitten.com/300/200",
+            price: 4990
+        },
+    ]
+)
+
+//3) listando todos los documentos de cada colección
+db.products.find()
+db.messages.find()
+
+//4) mostrando la cantidad de documentos almacenados en las colecciones
+db.products.count()
+db.messages.count()
+
+//5) CRUD sobre la colección de productos
+//a) agregando un producto más
+db.products.insertOne(
+    {
+        title: "Product 11",
+        thumbnail: "https://placekitten.com/300/200",
+        price: 3970
+    }
+)
+
+//b) Consulta por nombre de producto específico
+
+//i) listando los productos con precio menor a 1000
+db.products.find( { price: { $lt: 1000 } } )
+
+//ii) listando los productos con precio entre 1000 y 3000
+db.products.find( { price: { $gte: 1000, $lte: 3000 } } )
+
+//iii) listando los productos con precio mayor a 3000
+db.products.find( { price: { $gt: 3000 } } )
+
+//iv) consulta que trae solo el nombre del tercer producto más barato
+
+//c) actualización sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100
+db.products.updateMany( { price: { $gt: 100 } }, {$set: {stock: 100} } ) 
+
+//d) cambiando el stock a cero de los productos con precios mayores a 4000
+db.products.updateMany( { price: { $gte: 4000 } }, {$set: {stock: 0} } ) 
+
+//e) borrando los productos con precio menor a 1000
+db.products.deleteMany( { price: { $lte: 1000 } } )
+
+//6) creando el usuario pepe con clave asd456 de solo lectura
+db.createUser(   
+    {
+    user: "pepe",
+     pwd: "asd456", 
+    roles: [ { role: "read", db: "ecommerce" } ]  
+     } )
+
+//Cerrar la terminal
+//Volver a abrir mongod en la terminal de la siguiente manera:
+mongod --auth
+
+//verificando que el usuario pepe no puede cambiar la información
+db.products.insertOne({
+        title: "Product 12",
+        thumbnail: "https://placekitten.com/300/200",
+        price: 12000
+    })
+
+Respuesta: 
+    MongoServerError: not authorized on ecommerce to execute command ...
