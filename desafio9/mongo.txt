@@ -3,13 +3,16 @@
 //creando la base de datos ecommerce
 use ecommerce
 
+//devolviendo la base de datos seleccionada
+db
+
 //creando las colecciones de mensajes y productos
 db.createCollection("messages")
 db.createCollection("products")
 
 //1) y 2)
 //agregando los documentos a messages
-db.messages.insert(
+db.messages.insertMany(
     [
         {
             email: "email1@gmail.com",
@@ -65,56 +68,56 @@ db.messages.insert(
 )
 
 //agregando los documentos a products
-db.products.insert(
+db.products.insertMany(
     [
         {
             title: "Product 1",
-            thumbnail: "https://placekitten.com/300/200",
+            thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
             price: 120
         },
         {
             title: "Product 2",
-            thumbnail: "https://placekitten.com/300/200",
+            thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
             price: 580
         },
         {
             title: "Product 3",
-            thumbnail: "https://placekitten.com/300/200",
+            thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
             price: 900
         },
         {
             title: "Product 4",
-            thumbnail: "https://placekitten.com/300/200",
+            thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
             price: 1280
         },
         {
             title: "Product 5",
-            thumbnail: "https://placekitten.com/300/200",
+            thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
             price: 1700
         },
         {
             title: "Product 6",
-            thumbnail: "https://placekitten.com/300/200",
+            thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
             price: 2300
         },
         {
             title: "Product 7",
-            thumbnail: "https://placekitten.com/300/200",
+            thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
             price: 2860
         },
         {
             title: "Product 8",
-            thumbnail: "https://placekitten.com/300/200",
+            thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
             price: 3350
         },
         {
             title: "Product 9",
-            thumbnail: "https://placekitten.com/300/200",
+            thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
             price: 4320
         },
         {
             title: "Product 10",
-            thumbnail: "https://placekitten.com/300/200",
+            thumbnail: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
             price: 4990
         },
     ]
