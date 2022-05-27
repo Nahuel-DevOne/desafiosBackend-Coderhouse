@@ -9,3 +9,17 @@ db.once("open", function() {
     console.log("Connected to MongoDB");
 });
 
+// {
+//     title: 'Amadeus',
+//     year: 1984,
+//     score: 9.2,
+//     rating: 'R'
+// }
+
+const movieSchema = new mongoose.Schema({
+    title: String,
+    year: Number,
+    score: Number,
+    rating: String
+});
+
